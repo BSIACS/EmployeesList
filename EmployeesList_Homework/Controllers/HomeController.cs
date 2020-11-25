@@ -23,5 +23,12 @@ namespace EmployeesList_Homework.Controllers
         {
             return View(_employees);
         }
+
+        public IActionResult Details(int id)
+        {
+            Employee employee = _employees.FirstOrDefault(emp => emp.Id == id);
+
+            return View(employee);
+        }
     }
 }
