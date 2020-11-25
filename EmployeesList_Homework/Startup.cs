@@ -15,9 +15,10 @@ namespace EmployeesList_Homework
         
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvc();              //Добавляем сервисы MVC
         }
 
-        
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -25,14 +26,13 @@ namespace EmployeesList_Homework
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            app.UseRouting();               //Используем систему маршрутизации
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=EmployeesList}");
             });
         }
     }
